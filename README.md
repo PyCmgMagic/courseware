@@ -1,16 +1,47 @@
-# React + Vite
+# 不插电的 AI 实验室｜HTML 互动课件
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+面向初中生的 3 课时、共 40 页互动课件，以“知识讲解 + 全班游戏 + 可视化复盘”为主线：
 
-Currently, two official plugins are available:
+1. 人类 ChatGPT：训练来源、逐词生成、候选词投票、概率分布、可调温度与采样原理。
+2. 从看图到预测：像素与特征、特征加权、可调判定线、数据集划分、泛化与数据偏差。
+3. 从反馈到策略：状态—动作—奖励循环、动作价值、策略更新、长期回报与探索/利用。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 课堂前启动
 
-## React Compiler
+最简单的方法：双击项目中的 `启动课件.cmd`。脚本会检查依赖、打开浏览器并启动本地课件服务。授课结束后，关闭命令行窗口即可停止服务。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+也可以在本目录运行：
 
-## Expanding the ESLint configuration
+```powershell
+npm install
+npm run classroom
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+浏览器会打开 `http://127.0.0.1:5173`。建议使用 Chrome 或 Edge，并在正式上课前试播一次。
+
+## 授课操作
+
+- `→`、`PageDown`、空格：下一页。
+- `←`、`PageUp`：上一页。
+- `F`：进入或退出全屏。
+- 右下角：返回首页、上一页、页码、下一页、全屏。
+- 右上角：切换明暗主题。
+- 触屏设备：左右滑动翻页。
+- 在输入候选词时，空格不会触发翻页。
+- 第 3 课反馈控制台：`W` / `↑` 记录 Yes，`S` / `↓` 记录 No。
+
+## 课堂建议
+
+- 投影分辨率优先使用 16:9（1280×720、1920×1080 均可）。
+- 游戏前先把学生分成 4–6 人小组，并指定记录员、发言人、操作协调员。
+- 第 3 课的隐藏任务只展示给全班，执行者应背对屏幕或短暂离场。
+- 现场网络不是必需的；课件素材和交互均在本地运行。
+
+## 开发与检查
+
+```powershell
+npm run lint
+npm run build
+```
+
+生产文件输出到 `dist/`，可部署到任意静态网站服务。

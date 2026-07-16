@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { motion } from 'framer-motion';
+import { PresentationMetaContext } from './PresentationMetaContext';
 
 export const Slide = ({ children, className = '', isActive = true }) => {
   if (!isActive) return null;
@@ -30,21 +32,33 @@ export const Slide = ({ children, className = '', isActive = true }) => {
   );
 };
 
-export const SlideTitle = ({ children }) => (
-  <motion.h2 
+export const SlideTitle = ({ children, eyebrow }) => {
+  const meta = useContext(PresentationMetaContext);
+  const stage = eyebrow || meta.sectionLabel;
+
+  return (
+  <motion.header
     initial={{ opacity: 0, y: -20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-    style={{ fontSize: 'var(--slide-title-size)', fontWeight: 800, margin: '0 0 var(--element-gap) 0', textAlign: 'center', letterSpacing: '-0.02em', flexShrink: 0 }} 
-    className="text-gradient"
+    className="slide-heading"
   >
-    {children}
-  </motion.h2>
-);
+    <div className="slide-kicker">
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <span className="lesson-label">{meta.lessonLabel}</span>
+        {stage && <span className="section-badge">{stage}</span>}
+      </div>
+      <span className="slide-number-indicator">{meta.currentSlide + 1} / {meta.totalSlides}</span>
+    </div>
+    <h2 className="text-gradient">{children}</h2>
+    <div className="slide-heading-line" aria-hidden="true" />
+  </motion.header>
+  );
+};
 
 export const SlideContent = ({ children, className = '' }) => (
-  <div style={{ flex: 1, minHeight: 0, maxHeight: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', overflow: 'hidden' }} className={`slide-content ${className}`}>
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', maxHeight: '100%', alignItems: 'center', justifyContent: 'center', margin: 'auto 0', padding: 'var(--element-gap) 0', flexShrink: 1 }}>
+  <div className={`slide-content ${className}`}>
+    <div className="slide-content-inner">
       {children}
     </div>
   </div>

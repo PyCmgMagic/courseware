@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "classroom": "npm run build && vite preview --host 127.0.0.1 --port 5173 --strictPort --open /?v=20260716-layout2",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

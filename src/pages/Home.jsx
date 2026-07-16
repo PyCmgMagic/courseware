@@ -51,17 +51,22 @@ export const Home = ({ onSelectLesson }) => {
 
       <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
         {lessons.map((lesson, idx) => (
-          <motion.div
+          <motion.button
             key={lesson.id}
+            type="button"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
             onClick={() => onSelectLesson(lesson.id)}
-            className="glass-panel"
+            aria-label={`进入${lesson.subtitle}：${lesson.title}`}
+            className="glass-panel lesson-card"
             style={{
               width: '320px',
               padding: '2.5rem',
               cursor: 'pointer',
+              border: '1px solid var(--border-glass)',
+              color: 'var(--text-primary)',
+              textAlign: 'left',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start'
@@ -86,7 +91,7 @@ export const Home = ({ onSelectLesson }) => {
             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0, fontSize: '0.95rem' }}>
               {lesson.desc}
             </p>
-          </motion.div>
+          </motion.button>
         ))}
       </div>
     </div>

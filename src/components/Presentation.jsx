@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Home, Maximize2 } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
+import { PresentationMetaContext } from './PresentationMetaContext';
 
-export const Presentation = ({ slides, onGoHome }) => {
+export const Presentation = ({ slides, onGoHome, lessonLabel = '', stages = [] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const touchStartX = useRef(null);
 
@@ -18,10 +19,14 @@ export const Presentation = ({ slides, onGoHome }) => {
     const handleKeyDown = (e) => {
       const target = e.target;
       const isEditing = target instanceof HTMLElement && (
-        target.matches('input, textarea, select, button, [contenteditable="true"]')
+        target.matches('input, textarea, select, [contenteditable="true"]')
       );
+      const isButtonFocused = target instanceof HTMLElement && target.matches('button, a[href]');
 
       if (isEditing || e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
+
+      // Space should activate a focused control, not unexpectedly change slides.
+      if (e.key === ' ' && isButtonFocused) return;
 
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault();
@@ -63,6 +68,10 @@ export const Presentation = ({ slides, onGoHome }) => {
     else prevSlide();
   };
 
+  const sectionLabel = [...stages]
+    .reverse()
+    .find((stage) => currentSlide >= stage.from)?.label || '';
+
   return (
     <main
       className="presentation-shell"
@@ -74,13 +83,38 @@ export const Presentation = ({ slides, onGoHome }) => {
         style={{ transform: `scaleX(${(currentSlide + 1) / slides.length})` }}
         aria-hidden="true"
       />
-      <AnimatePresence mode="wait">
-        {slides.map((SlideComponent, index) => (
-          index === currentSlide && (
-            <SlideComponent key={index} isActive={true} />
-          )
-        ))}
-      </AnimatePresence>
+      <PresentationMetaContext.Provider value={{ lessonLabel, sectionLabel, currentSlide, totalSlides: slides.length }}>
+        <AnimatePresence mode="wait">
+          {slides.map((SlideComponent, index) => (
+            index === currentSlide && (
+              <SlideComponent key={index} isActive={true} />
+            )
+          ))}
+        </AnimatePresence>
+      </PresentationMetaContext.Provider>
+
+      {/* Stages Timeline Breadcrumbs */}
+      {stages && stages.length > 0 && (
+        <div className="stages-timeline" style={{ pointerEvents: 'auto' }}>
+          {stages.map((stage, idx) => {
+            const isActive = currentSlide >= stage.from && (idx === stages.length - 1 || currentSlide < stages[idx + 1].from);
+            const isCompleted = currentSlide >= (stages[idx + 1]?.from || slides.length);
+            return (
+              <div key={idx} style={{ display: 'flex', alignItems: 'center' }}>
+                <button 
+                  className={`timeline-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
+                  onClick={() => setCurrentSlide(stage.from)}
+                  title={`跳转到 ${stage.label}`}
+                >
+                  <span className="timeline-dot" />
+                  <span className="timeline-label">{stage.label}</span>
+                </button>
+                {idx < stages.length - 1 && <span className="timeline-connector" />}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Navigation Controls */}
       <div className="nav-controls">

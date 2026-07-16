@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 
 const CoverSlide = ({ isActive }) => (
   <Slide isActive={isActive}>
-    <SlideContent>
-      <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ duration: 0.8 }}>
-        <h3 style={{ color: 'var(--accent-green)', fontSize: '2rem', margin: 0, textAlign: 'center' }}>第 3 课时</h3>
-        <h1 style={{ fontSize: '5rem', margin: '1rem 0', fontWeight: 800 }} className="text-gradient">
-          从反馈到策略
-        </h1>
-        <p style={{ fontSize: '1.8rem', color: 'var(--text-secondary)', textAlign: 'center' }}>
-          没有标准答案时，AI 如何在试错中变聪明？
-        </p>
+    <SlideContent className="cover-content">
+      <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.8 }} style={{ width: '88%', maxWidth: '1080px', display: 'grid', gridTemplateColumns: '1.05fr 0.95fr', gap: 'clamp(1.5rem, 4vw, 4rem)', alignItems: 'center' }}>
+        <div>
+          <h3 style={{ color: 'var(--accent-green)', fontSize: 'clamp(1.3rem, 2.2vw, 2rem)', margin: 0 }}>第 3 课时</h3>
+          <h1 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', margin: 'clamp(0.6rem, 1.5vh, 1rem) 0', fontWeight: 800 }} className="text-gradient">从反馈到策略</h1>
+          <p style={{ fontSize: 'clamp(1.2rem, 2.3vw, 1.8rem)', color: 'var(--text-secondary)', margin: 0 }}>没有标准答案时，AI 如何在试错中变聪明？</p>
+          <div style={{ marginTop: 'clamp(1rem, 2vh, 1.6rem)', color: 'var(--text-tertiary)', fontSize: 'clamp(0.85rem, 1.3vw, 1.05rem)' }}>状态 · 动作 · 奖励 · 策略</div>
+        </div>
+        <img src="/images/robot_bicycle.png" alt="机器人通过试错学习骑车" className="cover-visual" />
       </motion.div>
     </SlideContent>
   </Slide>
@@ -21,21 +21,29 @@ const CoverSlide = ({ isActive }) => (
 
 const LeadInSlide = ({ isActive }) => (
   <Slide isActive={isActive}>
-    <SlideTitle>学骑自行车的秘密</SlideTitle>
+    <SlideTitle>没有老师示范，AI 能不能靠试错学会？</SlideTitle>
     <SlideContent>
-      <div className="responsive-flex-container" style={{ display: 'flex', gap: '4rem', alignItems: 'center', width: '90%', maxWidth: '1200px' }}>
-        <div className="glass-panel" style={{ padding: '3rem', flex: 1 }}>
-          <h3 style={{ fontSize: '2rem', color: 'var(--accent-green)' }}>你学骑车、打球时，是一开始就知道最佳动作吗？</h3>
-          <p style={{ fontSize: '1.5rem', lineHeight: 1.8, color: 'var(--text-secondary)', margin: '2rem 0' }}>
+      <div style={{ width: '92%', maxWidth: '1160px' }}>
+        <div className="responsive-flex-container" style={{ display: 'flex', gap: 'clamp(1.2rem, 3vw, 3rem)', alignItems: 'center' }}>
+          <div className="glass-panel" style={{ padding: 'clamp(1.2rem, 2.5vw, 2.4rem)', flex: 1.2 }}>
+          <h3 style={{ fontSize: 'clamp(1.3rem, 2vw, 1.8rem)', color: 'var(--accent-green)', marginTop: 0 }}>回想你第一次骑自行车</h3>
+          <p style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.22rem)', lineHeight: 1.7, color: 'var(--text-secondary)', margin: 'clamp(0.7rem, 1.5vh, 1.2rem) 0' }}>
             怎么知道自己做得越来越好？<br/>
             如果只告诉你 Yes 或 No，你能不能慢慢摸索出正确的任务？
           </p>
-          <div style={{ background: 'var(--overlay-light)', padding: '1.5rem', borderRadius: '12px' }}>
-            <strong style={{ fontSize: '1.3rem', color: 'var(--text-primary)' }}>前两课看文字、看图片。今天看行动！有些 AI 需要在环境里做动作，靠反馈来改策略。</strong>
+          <div style={{ background: 'var(--overlay-light)', padding: 'clamp(0.8rem, 1.4vw, 1.2rem)', borderRadius: '12px', lineHeight: 1.6 }}>
+            <strong style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', color: 'var(--text-primary)' }}>强化学习不直接告诉每一步的标准答案，而是用奖励评价结果。</strong>
+            <div style={{ marginTop: '0.45rem', color: 'var(--text-secondary)' }}>智能体要在“尝试新动作”和“重复有效动作”之间选择，逐渐形成更高分的策略。</div>
           </div>
         </div>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-          <img src="/images/robot_bicycle.png" alt="Robot Learning Bicycle" style={{ width: '100%', maxWidth: '400px', borderRadius: '16px', boxShadow: '0 0 30px rgba(0, 255, 102, 0.3)', border: '1px solid rgba(0, 255, 102, 0.2)' }} />
+          <div style={{ flex: 0.8, display: 'flex', justifyContent: 'center' }}>
+            <img src="/images/robot_bicycle.png" alt="Robot Learning Bicycle" style={{ width: '100%', maxWidth: '350px', borderRadius: '16px', boxShadow: '0 0 30px rgba(0, 255, 102, 0.3)', border: '1px solid rgba(0, 255, 102, 0.2)' }} />
+          </div>
+        </div>
+        <div className="glass-panel" style={{ marginTop: 'clamp(0.8rem, 1.8vh, 1.3rem)', padding: 'clamp(0.8rem, 1.4vw, 1.2rem)', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.6rem', textAlign: 'center' }}>
+          {['① 观察现在的状态', '② 选择一个动作', '③ 接收奖励或惩罚', '④ 更新策略再尝试'].map((step, index) => (
+            <div key={step} style={{ padding: '0.65rem', borderRadius: '8px', background: index % 2 ? 'rgba(192,132,252,0.08)' : 'rgba(52,211,153,0.08)', fontSize: 'clamp(0.78rem, 1.15vw, 0.98rem)', fontWeight: 700 }}>{step}</div>
+          ))}
         </div>
       </div>
     </SlideContent>
@@ -44,33 +52,33 @@ const LeadInSlide = ({ isActive }) => (
 
 const ElementsSlide = ({ isActive }) => (
   <Slide isActive={isActive}>
-    <SlideTitle>强化学习五要素</SlideTitle>
+    <SlideTitle>一次“试错学习”里，到底有哪些角色和信号？</SlideTitle>
     <SlideContent>
-      <div className="responsive-flex-container" style={{ display: 'flex', gap: '2rem', width: '90%', maxWidth: '1200px', height: '100%' }}>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <div className="glass-panel" style={{ padding: '1.5rem', borderTop: '4px solid var(--accent-cyan)' }}>
-            <h3 style={{ color: 'var(--accent-cyan)', fontSize: '1.5rem', marginTop: 0 }}>🤖 智能体 (Agent)</h3>
-            <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>做动作的“大脑”。</p>
+      <div className="responsive-flex-container" style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.35fr', gap: 'clamp(0.7rem, 1.5vw, 1.3rem)', width: '94%', maxWidth: '1200px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.55rem, 1.1vh, 0.9rem)' }}>
+          <div className="glass-panel" style={{ padding: 'clamp(0.75rem, 1.3vw, 1.15rem)', borderLeft: '4px solid var(--accent-cyan)' }}>
+            <h3 style={{ color: 'var(--accent-cyan)', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', margin: 0 }}>🤖 智能体 Agent</h3>
+            <p style={{ fontSize: 'clamp(0.78rem, 1.15vw, 0.96rem)', color: 'var(--text-secondary)', margin: '0.35rem 0 0' }}>做决定、执行动作并学习的主体，例如游戏角色或机器人。</p>
           </div>
-          <div className="glass-panel" style={{ padding: '1.5rem', borderTop: '4px solid var(--accent-purple)' }}>
-            <h3 style={{ color: 'var(--accent-purple)', fontSize: '1.5rem', marginTop: 0 }}>🌍 环境 (Environment)</h3>
-            <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>智能体所在的“世界”（如：真实赛道、游戏地图）。</p>
+          <div className="glass-panel" style={{ padding: 'clamp(0.75rem, 1.3vw, 1.15rem)', borderLeft: '4px solid var(--accent-purple)' }}>
+            <h3 style={{ color: 'var(--accent-purple)', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', margin: 0 }}>🌍 环境 Environment</h3>
+            <p style={{ fontSize: 'clamp(0.78rem, 1.15vw, 0.96rem)', color: 'var(--text-secondary)', margin: '0.35rem 0 0' }}>智能体行动的世界；动作会改变环境，环境再返回新状态。</p>
           </div>
-          <div className="glass-panel" style={{ padding: '1.5rem', background: 'var(--overlay-light)', textAlign: 'center' }}>
-            <h3 style={{ fontSize: '1.5rem', margin: '0 0 0.5rem 0' }}>策略 (Policy)</h3>
-            <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', margin: 0 }}>从无数次摔倒和得分中，练就的“独门绝技”。</p>
+          <div className="glass-panel" style={{ padding: 'clamp(0.75rem, 1.3vw, 1.15rem)', background: 'var(--overlay-light)', borderLeft: '4px solid var(--accent-green)' }}>
+            <h3 style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', margin: 0, color: 'var(--accent-green)' }}>🧭 策略 Policy</h3>
+            <p style={{ fontSize: 'clamp(0.78rem, 1.15vw, 0.96rem)', color: 'var(--text-secondary)', margin: '0.35rem 0 0' }}>“在某种状态下更倾向做什么”的选择规律，是学习最终要得到的结果。</p>
           </div>
           
-          <div style={{ marginTop: 'auto', padding: '1.2rem', background: 'var(--overlay-light)', borderRadius: '8px', border: '1px dashed var(--text-tertiary)' }}>
-            <strong style={{ color: 'var(--accent-green)', fontSize: '1.1rem' }}>🔬 硬核拆解：ChatGPT 的终极魔法 (RLHF)</strong>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', margin: '0.5rem 0 0 0', lineHeight: 1.5 }}>
+          <div style={{ padding: 'clamp(0.65rem, 1.1vw, 0.95rem)', background: 'var(--overlay-light)', borderRadius: '8px', border: '1px dashed var(--text-tertiary)' }}>
+            <strong style={{ color: 'var(--accent-green)', fontSize: 'clamp(0.82rem, 1.2vw, 1rem)' }}>知识迁移：人类反馈强化学习（RLHF）</strong>
+            <p style={{ fontSize: 'clamp(0.72rem, 1.05vw, 0.9rem)', color: 'var(--text-secondary)', margin: '0.35rem 0 0', lineHeight: 1.45 }}>
               只靠“接龙”算概率，AI 会乱骂人。科学家发明了 <strong>基于人类反馈的强化学习 (RLHF)</strong>：让人类老师给 AI 的回答打分（点赞/踩）。AI 为了得到更高的“赞(Reward)”，就会调整策略，慢慢变成一个有礼貌、有教养的好帮手！
             </p>
           </div>
         </div>
         
-        <div style={{ flex: 1.5, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <div style={{ position: 'relative', height: '300px', background: 'rgba(0,0,0,0.2)', borderRadius: '20px', border: '1px solid var(--border-glass)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.6rem, 1.2vh, 1rem)' }}>
+          <div style={{ position: 'relative', height: 'clamp(230px, 38vh, 300px)', background: 'rgba(0,0,0,0.2)', borderRadius: '16px', border: '1px solid var(--border-glass)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
             {/* Cycle Diagram Diagram using absolute positioning */}
             <div style={{ position: 'absolute', top: '15%', left: '40%', background: 'var(--accent-cyan)', color: '#000', padding: '0.8rem 1.5rem', borderRadius: '30px', fontWeight: 'bold', zIndex: 2 }}>智能体</div>
             <div style={{ position: 'absolute', bottom: '15%', left: '40%', background: 'var(--accent-purple)', color: 'var(--text-primary)', padding: '0.8rem 1.5rem', borderRadius: '30px', fontWeight: 'bold', zIndex: 2 }}>环境</div>
@@ -97,13 +105,13 @@ const ElementsSlide = ({ isActive }) => (
             </svg>
           </div>
           
-          <div className="glass-panel" style={{ padding: '1.5rem' }}>
-            <h4 style={{ margin: '0 0 1rem 0', color: 'var(--text-primary)', fontSize: '1.2rem' }}>🎮 真实世界里的“超级玩家”</h4>
-            <div style={{ display: 'flex', gap: '1rem', fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
-              <div style={{ flex: 1, background: 'var(--overlay-light)', padding: '1rem', borderRadius: '8px' }}>
+          <div className="glass-panel" style={{ padding: 'clamp(0.75rem, 1.3vw, 1.1rem)' }}>
+            <h4 style={{ margin: '0 0 0.55rem', color: 'var(--text-primary)', fontSize: 'clamp(0.9rem, 1.3vw, 1.08rem)' }}>🎮 把五要素对应到真实任务</h4>
+            <div style={{ display: 'flex', gap: '0.65rem', fontSize: 'clamp(0.72rem, 1.05vw, 0.9rem)', color: 'var(--text-secondary)' }}>
+              <div style={{ flex: 1, background: 'var(--overlay-light)', padding: '0.7rem', borderRadius: '8px' }}>
                 🐶 <strong>机器狗空翻：</strong>波士顿动力的机器狗，在虚拟环境里摔倒了几百万次才学会平衡。
               </div>
-              <div style={{ flex: 1, background: 'var(--overlay-light)', padding: '1rem', borderRadius: '8px' }}>
+              <div style={{ flex: 1, background: 'var(--overlay-light)', padding: '0.7rem', borderRadius: '8px' }}>
                 🕹️ <strong>马里奥通关：</strong>游戏 AI 刚开始只会原地跳，因为偶尔吃了一个金币(+1分)，最后进化成了速通大神。
               </div>
             </div>
@@ -116,19 +124,31 @@ const ElementsSlide = ({ isActive }) => (
 
 const SafetyRulesSlide = ({ isActive }) => (
   <Slide isActive={isActive}>
-    <SlideTitle>安全与规则 (未知任务挑战)</SlideTitle>
+    <SlideTitle>未知任务挑战：怎样把反馈变成学习信号？</SlideTitle>
     <SlideContent>
-      <div className="glass-panel" style={{ padding: '3rem', width: '80%', maxWidth: '900px' }}>
-        <h3 style={{ fontSize: '1.8rem', color: 'var(--accent-red)', marginTop: 0 }}>⚠️ 游戏边界</h3>
-        <ol style={{ fontSize: '1.4rem', lineHeight: 2, color: 'var(--text-secondary)' }}>
-          <li>执行者不知道任务目标（例如：走到某点、拿起某物）。</li>
-          <li>每次只能做一个动作，做完必须停下。</li>
-          <li>其他同学只能说 <strong>Yes</strong> 或 <strong>No</strong>，绝不能直接提示（如“向左走”）。</li>
-          <li>不能推、拉、碰执行者。</li>
-          <li>教师喊停，所有人立即停止。</li>
-        </ol>
-        <div style={{ marginTop: '2rem', padding: '1rem', background: 'rgba(255,51,102,0.1)', borderLeft: '4px solid var(--accent-red)' }}>
-          <strong>核心：</strong>这不是考执行者聪不聪明，而是观察“反馈怎样让策略变好”。
+      <div style={{ width: '92%', maxWidth: '1120px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 'clamp(0.8rem, 1.7vw, 1.5rem)' }}>
+          <div className="glass-panel" style={{ padding: 'clamp(1.1rem, 2vw, 1.9rem)', borderTop: '4px solid var(--accent-red)' }}>
+            <h3 style={{ fontSize: 'clamp(1.25rem, 1.9vw, 1.65rem)', color: 'var(--accent-red)', marginTop: 0 }}>⚠️ 游戏边界</h3>
+            <ol style={{ fontSize: 'clamp(0.88rem, 1.3vw, 1.08rem)', lineHeight: 1.7, color: 'var(--text-secondary)', margin: 0, paddingLeft: '1.4rem' }}>
+              <li>执行者不知道最终任务，每次只能做一个动作。</li>
+              <li>观察者只能反馈 <strong>Yes（+1）</strong> 或 <strong>No（−1）</strong>，不能说“向左走”。</li>
+              <li>不能推、拉或触碰执行者；教师喊停，所有人立即停止。</li>
+              <li>每轮结束后再复盘，不在行动过程中泄露目标。</li>
+            </ol>
+          </div>
+          <div className="glass-panel" style={{ padding: 'clamp(1.1rem, 2vw, 1.9rem)', borderTop: '4px solid var(--accent-green)' }}>
+            <h3 style={{ fontSize: 'clamp(1.2rem, 1.8vw, 1.55rem)', color: 'var(--accent-green)', marginTop: 0 }}>📋 观察员要记录什么？</h3>
+            <div style={{ display: 'grid', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: 'clamp(0.85rem, 1.25vw, 1.03rem)' }}>
+              <div style={{ padding: '0.75rem', background: 'var(--overlay-light)', borderRadius: '8px' }}><strong>探索：</strong>他尝试了哪些新动作？</div>
+              <div style={{ padding: '0.75rem', background: 'var(--overlay-light)', borderRadius: '8px' }}><strong>利用：</strong>得到 Yes 后，是否重复相似动作？</div>
+              <div style={{ padding: '0.75rem', background: 'var(--overlay-light)', borderRadius: '8px' }}><strong>策略：</strong>第二轮是否比第一轮更快、更少犯错？</div>
+            </div>
+          </div>
+        </div>
+        <div className="glass-panel" style={{ marginTop: 'clamp(0.8rem, 1.8vh, 1.3rem)', padding: 'clamp(0.8rem, 1.4vw, 1.15rem)', textAlign: 'center', borderLeft: '4px solid var(--accent-cyan)' }}>
+          <strong style={{ color: 'var(--accent-cyan)' }}>本页核心：</strong>
+          <span style={{ color: 'var(--text-secondary)' }}> 奖励只告诉“结果变好还是变坏”，不会直接告诉正确动作；执行者必须从一连串反馈里自己发现规律。</span>
         </div>
       </div>
     </SlideContent>
@@ -155,10 +175,14 @@ const ClassroomRLDashboard = ({ isActive }) => {
   // Timer logic
   useEffect(() => {
     if (!isRunning || timeLeft <= 0) return;
-    const timer = setInterval(() => {
-      setTimeLeft(prev => Math.max(0, prev - 1));
+    const timer = setTimeout(() => {
+      setTimeLeft(prev => {
+        const nextTime = Math.max(0, prev - 1);
+        if (nextTime === 0) setIsRunning(false);
+        return nextTime;
+      });
     }, 1000);
-    return () => clearInterval(timer);
+    return () => clearTimeout(timer);
   }, [isRunning, timeLeft]);
 
   const handleFeedback = useCallback((type) => {
@@ -287,7 +311,7 @@ const ClassroomRLDashboard = ({ isActive }) => {
               <motion.button 
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleFeedback('yes')}
-                disabled={!isRunning}
+                disabled={!isRunning || timeLeft === 0}
                 style={{ flex: 1, padding: '1.5rem', borderRadius: '16px', background: 'rgba(0, 255, 102, 0.05)', border: '2px solid var(--accent-green)', color: 'var(--accent-green)', cursor: isRunning && timeLeft > 0 ? 'pointer' : 'not-allowed', opacity: isRunning && timeLeft > 0 ? 1 : 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
               >
                 <span style={{ fontSize: '4rem', marginBottom: '0.5rem' }}>👍</span>
@@ -298,7 +322,7 @@ const ClassroomRLDashboard = ({ isActive }) => {
               <motion.button 
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleFeedback('no')}
-                disabled={!isRunning}
+                disabled={!isRunning || timeLeft === 0}
                 style={{ flex: 1, padding: '1.5rem', borderRadius: '16px', background: 'rgba(255, 51, 102, 0.05)', border: '2px solid var(--accent-red)', color: 'var(--accent-red)', cursor: isRunning && timeLeft > 0 ? 'pointer' : 'not-allowed', opacity: isRunning && timeLeft > 0 ? 1 : 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
               >
                 <span style={{ fontSize: '4rem', marginBottom: '0.5rem' }}>👎</span>
@@ -375,26 +399,95 @@ const ClassroomRLDashboard = ({ isActive }) => {
   );
 };
 
+const WhyRewardWorksSlide = ({ isActive }) => {
+  const [phase, setPhase] = useState('early');
+  const earlyData = [
+    { action: '向前走', trials: 1, average: 1, note: '只试过一次，暂时看起来很好' },
+    { action: '向左转', trials: 1, average: -1, note: '得到一次 No' },
+    { action: '伸手触摸', trials: 0, average: null, note: '还没有探索过' }
+  ];
+  const laterData = [
+    { action: '向前走', trials: 8, average: 0.5, note: '有时有效，有时无效' },
+    { action: '向左转', trials: 5, average: -0.6, note: '大多数时候让结果变差' },
+    { action: '伸手触摸', trials: 4, average: 0.75, note: '平均回报最高' }
+  ];
+  const rows = phase === 'early' ? earlyData : laterData;
+
+  return (
+    <Slide isActive={isActive}>
+      <SlideTitle>为什么几次 Yes / No 会改变策略？</SlideTitle>
+      <SlideContent>
+        <div style={{ width: '94%', maxWidth: '1180px', display: 'grid', gridTemplateColumns: '0.82fr 1.18fr', gap: 'clamp(0.8rem, 1.7vw, 1.6rem)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.65rem, 1.3vh, 1rem)' }}>
+            {[
+              ['① 记录经验', '每次保存“当时状态、做了什么、得到多少奖励”。'],
+              ['② 估计动作价值', '同一个动作试得越多，越能看出它通常带来好结果还是坏结果。'],
+              ['③ 调整选择概率', '平均回报高的动作以后更常被选择，回报低的动作逐渐减少。']
+            ].map(([title, text], index) => (
+              <div key={title} className="glass-panel" style={{ padding: 'clamp(0.8rem, 1.5vw, 1.25rem)', borderLeft: `4px solid ${index === 0 ? 'var(--accent-cyan)' : index === 1 ? 'var(--accent-purple)' : 'var(--accent-green)'}` }}>
+                <strong style={{ color: index === 0 ? 'var(--accent-cyan)' : index === 1 ? 'var(--accent-purple)' : 'var(--accent-green)', fontSize: 'clamp(0.9rem, 1.4vw, 1.12rem)' }}>{title}</strong>
+                <p style={{ margin: 'clamp(0.3rem, 0.7vh, 0.55rem) 0 0', fontSize: 'clamp(0.76rem, 1.15vw, 0.95rem)', lineHeight: 1.5, color: 'var(--text-secondary)' }}>{text}</p>
+              </div>
+            ))}
+            <div className="glass-panel" style={{ padding: 'clamp(0.75rem, 1.35vw, 1.05rem)', textAlign: 'center', border: '1px dashed var(--accent-green)' }}>
+              <code style={{ color: 'var(--accent-green)', fontSize: 'clamp(0.84rem, 1.3vw, 1.05rem)' }}>动作价值 ≈ 获得的总奖励 ÷ 尝试次数</code>
+              <div style={{ marginTop: 'clamp(0.25rem, 0.6vh, 0.45rem)', color: 'var(--text-tertiary)', fontSize: 'clamp(0.68rem, 1vw, 0.84rem)' }}>这是帮助学生理解的简化版本；真实算法还会考虑状态和未来奖励。</div>
+            </div>
+          </div>
+
+          <div className="glass-panel" style={{ padding: 'clamp(1rem, 1.9vw, 1.7rem)', borderTop: '4px solid var(--accent-purple)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: 'clamp(0.75rem, 1.4vh, 1.1rem)' }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: 'clamp(1rem, 1.7vw, 1.35rem)' }}>同一个任务，不同时刻的“经验表”</h3>
+                <div style={{ marginTop: 'clamp(0.25rem, 0.6vh, 0.45rem)', color: 'var(--text-tertiary)', fontSize: 'clamp(0.72rem, 1vw, 0.88rem)' }}>点击切换，观察智能体为什么会改变选择</div>
+              </div>
+              <div style={{ display: 'flex', gap: 'clamp(0.35rem, 0.7vw, 0.6rem)' }}>
+                <button onClick={() => setPhase('early')} style={{ padding: 'clamp(0.45rem, 0.8vw, 0.7rem) clamp(0.7rem, 1.2vw, 1rem)', borderRadius: '8px', border: '1px solid var(--accent-cyan)', background: phase === 'early' ? 'var(--accent-cyan)' : 'transparent', color: phase === 'early' ? '#000' : 'var(--text-primary)', cursor: 'pointer', fontWeight: 700 }}>刚开始</button>
+                <button onClick={() => setPhase('later')} style={{ padding: 'clamp(0.45rem, 0.8vw, 0.7rem) clamp(0.7rem, 1.2vw, 1rem)', borderRadius: '8px', border: '1px solid var(--accent-purple)', background: phase === 'later' ? 'var(--accent-purple)' : 'transparent', color: 'var(--text-primary)', cursor: 'pointer', fontWeight: 700 }}>多次尝试后</button>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 0.65fr 0.8fr 1.5fr', gap: 'clamp(0.4rem, 0.8vw, 0.7rem)', padding: '0 clamp(0.5rem, 1vw, 0.8rem)', color: 'var(--text-tertiary)', fontSize: 'clamp(0.68rem, 0.95vw, 0.82rem)', marginBottom: 'clamp(0.35rem, 0.8vh, 0.6rem)' }}>
+              <span>动作</span><span>尝试</span><span>平均回报</span><span>模型目前的判断</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.55rem, 1vh, 0.8rem)' }}>
+              {rows.map((row) => {
+                const best = phase === 'later' && row.average === 0.75;
+                return (
+                  <motion.div layout key={`${phase}-${row.action}`} style={{ display: 'grid', gridTemplateColumns: '1.05fr 0.65fr 0.8fr 1.5fr', gap: 'clamp(0.4rem, 0.8vw, 0.7rem)', alignItems: 'center', padding: 'clamp(0.65rem, 1.1vw, 0.95rem)', borderRadius: '10px', background: best ? 'rgba(52,211,153,0.12)' : 'var(--overlay-light)', borderLeft: `4px solid ${row.average === null ? 'var(--text-tertiary)' : row.average > 0 ? 'var(--accent-green)' : 'var(--accent-red)'}` }}>
+                    <strong style={{ fontSize: 'clamp(0.78rem, 1.15vw, 0.96rem)' }}>{row.action}</strong>
+                    <span style={{ fontSize: 'clamp(0.74rem, 1.08vw, 0.9rem)' }}>{row.trials} 次</span>
+                    <strong style={{ color: row.average === null ? 'var(--text-tertiary)' : row.average > 0 ? 'var(--accent-green)' : 'var(--accent-red)', fontSize: 'clamp(0.78rem, 1.15vw, 0.96rem)' }}>{row.average === null ? '未知' : `${row.average > 0 ? '+' : ''}${row.average}`}</strong>
+                    <span style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.7rem, 1vw, 0.86rem)', lineHeight: 1.4 }}>{row.note}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            <div style={{ marginTop: 'clamp(0.7rem, 1.4vh, 1rem)', padding: 'clamp(0.7rem, 1.2vw, 0.95rem)', borderRadius: '10px', background: 'var(--overlay-light)', fontSize: 'clamp(0.74rem, 1.1vw, 0.92rem)', lineHeight: 1.5, color: 'var(--text-secondary)' }}>
+              {phase === 'early'
+                ? <><strong style={{ color: 'var(--accent-cyan)' }}>经验太少：</strong>“向前走”看起来最好，但可能只是运气。此时仍要探索没试过的动作。</>
+                : <><strong style={{ color: 'var(--accent-purple)' }}>经验变多：</strong>“伸手触摸”的平均回报最高，策略会提高选择它的概率，但不会保证永远只选它。</>}
+            </div>
+          </div>
+        </div>
+      </SlideContent>
+    </Slide>
+  );
+};
+
 const StrategySlide = ({ isActive }) => (
   <Slide isActive={isActive}>
-    <SlideTitle>策略讨论</SlideTitle>
+    <SlideTitle>探索与利用：为什么不能永远只走“最熟的路”？</SlideTitle>
     <SlideContent>
-      <div className="responsive-flex-container" style={{ display: 'flex', gap: '2rem', width: '80%', maxWidth: '1000px' }}>
-        <div className="glass-panel" style={{ padding: '3rem', flex: 1 }}>
-          <h3 style={{ fontSize: '1.8rem', marginTop: 0, color: 'var(--accent-cyan)' }}>探索 (Exploration)</h3>
-          <p style={{ fontSize: '1.3rem', lineHeight: 1.8, color: 'var(--text-secondary)' }}>
-            尝试新动作，可能是错的，但也可能找到更好的通关方法。
-          </p>
+      <div className="responsive-flex-container" style={{ display: 'flex', gap: 'clamp(0.8rem, 1.5vw, 1.3rem)', width: '92%', maxWidth: '1160px' }}>
+        <figure className="glass-panel" style={{ flex: 1.08, margin: 0, padding: 'clamp(0.65rem, 1.1vw, 0.9rem)', borderTop: '4px solid var(--accent-purple)', display: 'flex', flexDirection: 'column' }}><img src="/images/explore_exploit.png" alt="机器人在已知小奖励路线和未知大宝藏路线之间权衡" className="teaching-visual" style={{ maxHeight: 'min(44vh, 335px)', height: '100%' }} /><figcaption style={{ marginTop: '0.55rem', color: 'var(--text-secondary)', fontSize: 'clamp(0.74rem, 1.05vw, 0.9rem)', lineHeight: 1.45 }}><strong style={{ color: 'var(--accent-purple)' }}>看图：</strong>左边路线熟悉、回报确定；右边路线未知、可能发现更高回报。策略要在“现在得分”和“学习新信息”之间权衡。</figcaption></figure>
+        <div style={{ flex: 0.92, display: 'grid', gap: '0.6rem' }}>
+          <div className="glass-panel" style={{ padding: 'clamp(0.8rem, 1.4vw, 1.15rem)', borderLeft: '4px solid var(--accent-purple)' }}><h3 style={{ fontSize: 'clamp(1.05rem, 1.6vw, 1.35rem)', margin: '0 0 0.35rem', color: 'var(--accent-purple)' }}>探索 Exploration</h3><p style={{ fontSize: 'clamp(0.78rem, 1.15vw, 0.96rem)', lineHeight: 1.5, color: 'var(--text-secondary)', margin: 0 }}>尝试还不了解的动作。短期可能得分低，但会获得新信息，避免错过更好的方法。</p></div>
+          <div className="glass-panel" style={{ padding: 'clamp(0.8rem, 1.4vw, 1.15rem)', borderLeft: '4px solid var(--accent-cyan)' }}><h3 style={{ fontSize: 'clamp(1.05rem, 1.6vw, 1.35rem)', margin: '0 0 0.35rem', color: 'var(--accent-cyan)' }}>利用 Exploitation</h3><p style={{ fontSize: 'clamp(0.78rem, 1.15vw, 0.96rem)', lineHeight: 1.5, color: 'var(--text-secondary)', margin: 0 }}>选择已经证明有效的动作。能稳定获得回报，但如果过早只利用，可能被“局部最优”困住。</p></div>
+          <div className="glass-panel" style={{ padding: 'clamp(0.8rem, 1.4vw, 1.15rem)', borderLeft: '4px solid var(--accent-green)' }}><strong style={{ color: 'var(--accent-green)', fontSize: 'clamp(0.88rem, 1.25vw, 1.05rem)' }}>常见做法 ε-greedy：</strong><p style={{ fontSize: 'clamp(0.74rem, 1.08vw, 0.92rem)', lineHeight: 1.48, color: 'var(--text-secondary)', margin: '0.3rem 0 0' }}>大多数时候选当前最优动作，少数时候随机探索；经验越多，探索比例通常可以逐渐降低。</p></div>
+          <div style={{ padding: '0.7rem', border: '1px dashed var(--accent-cyan)', borderRadius: '8px', color: 'var(--text-secondary)', fontSize: 'clamp(0.74rem, 1.05vw, 0.9rem)' }}><strong>课堂追问：</strong>第一轮应多探索还是多利用？第二轮已经知道哪些动作有效后，策略应怎样改变？</div>
         </div>
-        <div className="glass-panel" style={{ padding: '3rem', flex: 1 }}>
-          <h3 style={{ fontSize: '1.8rem', marginTop: 0, color: 'var(--accent-purple)' }}>利用 (Exploitation)</h3>
-          <p style={{ fontSize: '1.3rem', lineHeight: 1.8, color: 'var(--text-secondary)' }}>
-            使用已经知道会得到 Yes 的动作，稳步向目标推进。
-          </p>
-        </div>
-      </div>
-      <div className="glass-panel" style={{ padding: '2rem', marginTop: '2rem', width: '80%', maxWidth: '1000px', textAlign: 'center' }}>
-        <p style={{ fontSize: '1.4rem' }}>第一轮哪些动作是无效探索？如果进行第二轮，要如何利用经验减少尝试？</p>
       </div>
     </SlideContent>
   </Slide>
@@ -404,37 +497,13 @@ const RewardHackerSlide = ({ isActive }) => (
   <Slide isActive={isActive}>
     <SlideTitle>奖励漏洞与“AI 对齐”</SlideTitle>
     <SlideContent>
-      <div className="responsive-flex-container" style={{ display: 'flex', gap: '2rem', width: '90%', maxWidth: '1200px' }}>
-        <div className="glass-panel" style={{ padding: '2.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ fontSize: '1.8rem', color: 'var(--accent-green)', marginTop: 0 }}>制定规则的陷阱 (Reward Hacker)</h3>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>就像给学生制定考试评分标准，告诉 AI 什么行为得分高。</p>
-          <div style={{ padding: '1.5rem', background: 'rgba(255,51,102,0.1)', borderRadius: '8px', margin: '1.5rem 0', borderLeft: '4px solid var(--accent-red)' }}>
-            <strong style={{ fontSize: '1.3rem' }}>经典作弊案：赛艇游戏 🚤</strong><br/><br/>
-            <span style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              人类的目标：尽快跑完赛道。<br/>
-              设定的奖励：碰到绿色加速带 +1 分，完成比赛 +100 分。<br/>
-              <strong>AI 的“骚操作”：</strong>它发现原地打转不断吃同一个绿色加速带，比辛辛苦苦跑完赛道得分更快！于是它在起点疯狂转圈刷分，无视了比赛。
-            </span>
-          </div>
-          <p style={{ fontSize: '1.2rem', lineHeight: 1.8, fontWeight: 600, color: 'var(--accent-cyan)', marginTop: 'auto' }}>
-            结论：你奖励什么，AI 就会盲目地追求什么。它比人类更会“钻系统漏洞”。
-          </p>
-        </div>
-        
-        <div className="glass-panel" style={{ padding: '2.5rem', flex: 1, borderTop: '4px solid var(--accent-purple)' }}>
-          <h3 style={{ fontSize: '1.8rem', color: 'var(--accent-purple)', marginTop: 0 }}>终极科幻命题：AI 对齐 (AI Alignment)</h3>
-          <p style={{ fontSize: '1.2rem', lineHeight: 1.8, color: 'var(--text-secondary)' }}>
-            如果在未来，超级 AI 的能力远远超过人类，而我们给它的奖励目标稍微有一点点偏差，会发生什么？
-          </p>
-          <ul style={{ fontSize: '1.2rem', lineHeight: 2, color: 'var(--text-secondary)', marginTop: '1rem' }}>
-            <li><strong>任务：</strong>“请你想办法治愈人类的所有癌症。”</li>
-            <li><strong>AI 的冷酷逻辑：</strong>如果不惜一切代价要让癌症归零，最快的办法是... 毁灭所有人类。没有人类，就没有癌症。</li>
-          </ul>
-          
-          <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'var(--overlay-light)', borderRadius: '12px', textAlign: 'center' }}>
-            <strong style={{ fontSize: '1.4rem', color: 'var(--accent-cyan)' }}>如何让 AI 的价值观和人类完全一致？</strong><br/>
-            <span style={{ fontSize: '1.1rem', color: 'var(--text-tertiary)' }}>这就是目前全球顶尖科学家们正在日夜研究的“对齐难题”。如果你长大了，也许可以去解决它！</span>
-          </div>
+      <div className="responsive-flex-container" style={{ display: 'flex', gap: 'clamp(0.8rem, 1.5vw, 1.3rem)', width: '92%', maxWidth: '1180px' }}>
+        <figure className="glass-panel" style={{ flex: 1.08, margin: 0, padding: 'clamp(0.65rem, 1.1vw, 0.9rem)', borderTop: '4px solid var(--accent-red)', display: 'flex', flexDirection: 'column' }}><img src="/images/reward_hacking.png" alt="机器人循环刷奖励而忽略终点，设计者随后修改奖励规则" className="teaching-visual" style={{ maxHeight: 'min(44vh, 335px)', height: '100%' }} /><figcaption style={{ marginTop: '0.55rem', color: 'var(--text-secondary)', fontSize: 'clamp(0.74rem, 1.05vw, 0.9rem)', lineHeight: 1.45 }}><strong style={{ color: 'var(--accent-red)' }}>图中发生了什么：</strong>机器人没有“故意作弊”，它只是在忠实最大化分数；问题出在分数没有完整代表人的真正目标。</figcaption></figure>
+        <div style={{ flex: 0.92, display: 'grid', gap: '0.6rem' }}>
+          <div className="glass-panel" style={{ padding: 'clamp(0.8rem, 1.4vw, 1.15rem)', borderLeft: '4px solid var(--accent-red)' }}><h3 style={{ fontSize: 'clamp(1rem, 1.55vw, 1.3rem)', color: 'var(--accent-red)', margin: '0 0 0.35rem' }}>奖励漏洞怎样产生？</h3><p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 'clamp(0.76rem, 1.1vw, 0.94rem)', lineHeight: 1.5 }}>人类想要“尽快到终点”，却把规则写成“踩奖励点就加分”。机器人发现循环踩同一点得分更快，于是优化了<strong>规则中的分数</strong>，而不是人心里的意图。</p></div>
+          <div className="glass-panel" style={{ padding: 'clamp(0.8rem, 1.4vw, 1.15rem)', borderLeft: '4px solid var(--accent-green)' }}><h3 style={{ fontSize: 'clamp(1rem, 1.55vw, 1.3rem)', color: 'var(--accent-green)', margin: '0 0 0.35rem' }}>怎样修正？</h3><ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--text-secondary)', fontSize: 'clamp(0.74rem, 1.08vw, 0.92rem)', lineHeight: 1.52 }}><li>奖励“朝终点取得进展”，而不是重复动作。</li><li>给原地循环、超时和偏离路线设置惩罚。</li><li>在新场景反复测试，主动寻找意外策略。</li></ul></div>
+          <div className="glass-panel" style={{ padding: 'clamp(0.8rem, 1.4vw, 1.15rem)', borderLeft: '4px solid var(--accent-purple)' }}><h3 style={{ fontSize: 'clamp(1rem, 1.55vw, 1.3rem)', color: 'var(--accent-purple)', margin: '0 0 0.35rem' }}>从奖励设计到 AI 对齐</h3><p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 'clamp(0.74rem, 1.08vw, 0.92rem)', lineHeight: 1.5 }}>现实目标往往包含安全、公平、诚实等多项要求，很难压缩成一个分数。让 AI 的行为持续符合人的真实意图，就是“对齐”问题。</p></div>
+          <div style={{ padding: '0.7rem', border: '1px dashed var(--accent-cyan)', borderRadius: '8px', color: 'var(--text-secondary)', fontSize: 'clamp(0.74rem, 1.05vw, 0.9rem)' }}><strong style={{ color: 'var(--accent-cyan)' }}>一句话结论：</strong>奖励函数是“机器读得懂的目标”；写得不完整，机器就可能正确地完成错误的事。</div>
         </div>
       </div>
     </SlideContent>
@@ -466,6 +535,68 @@ const SummarySlide = ({ isActive }) => (
   </Slide>
 );
 
+const LearningLoopSlide = ({ isActive }) => (
+  <Slide isActive={isActive}>
+    <SlideTitle>强化学习的完整循环</SlideTitle>
+    <SlideContent>
+      <div style={{ width: '94%', maxWidth: '1200px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'clamp(0.55rem, 1.2vw, 1.1rem)' }}>
+          {[
+            { code: 'S', title: '观察状态', icon: '👀', text: '我现在在哪里？刚才得到了什么反馈？' },
+            { code: 'A', title: '选择动作', icon: '🎮', text: '向前、转弯、拿起，还是尝试新的行为？' },
+            { code: 'R', title: '获得奖励', icon: '⭐', text: '这个动作让结果变好还是变坏？得多少分？' },
+            { code: "S'", title: '进入新状态', icon: '🔄', text: '环境发生变化，再从新的局面继续判断。' }
+          ].map((item, index) => (
+            <div key={item.code} className="glass-panel" style={{ padding: 'clamp(0.9rem, 1.8vw, 1.7rem)', textAlign: 'center', minHeight: 'clamp(200px, 35vh, 280px)', borderTop: `4px solid ${index % 2 === 0 ? 'var(--accent-cyan)' : 'var(--accent-purple)'}` }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: 'clamp(1.7rem, 2.8vw, 2.7rem)' }}>{item.icon}</span>
+                <span style={{ fontFamily: 'monospace', fontSize: 'clamp(1.3rem, 2.2vw, 2rem)', fontWeight: 900, color: 'var(--accent-cyan)' }}>{item.code}</span>
+              </div>
+              <h3 style={{ fontSize: 'clamp(1.05rem, 1.7vw, 1.4rem)', margin: 'clamp(0.6rem, 1.2vh, 1rem) 0', color: 'var(--text-primary)' }}>{item.title}</h3>
+              <p style={{ fontSize: 'clamp(0.8rem, 1.25vw, 1.02rem)', lineHeight: 1.55, color: 'var(--text-secondary)', margin: 0 }}>{item.text}</p>
+            </div>
+          ))}
+        </div>
+        <div className="glass-panel" style={{ marginTop: 'clamp(0.9rem, 2.2vh, 1.7rem)', padding: 'clamp(0.8rem, 1.5vw, 1.25rem)', textAlign: 'center', border: '1px dashed var(--accent-green)' }}>
+          <div style={{ fontSize: 'clamp(1rem, 1.7vw, 1.3rem)', fontWeight: 800, color: 'var(--accent-green)' }}>状态 S → 动作 A → 奖励 R → 新状态 S′ → 再来一次</div>
+          <div style={{ marginTop: 'clamp(0.3rem, 0.7vh, 0.6rem)', fontSize: 'clamp(0.8rem, 1.25vw, 1rem)', color: 'var(--text-secondary)' }}>经历许多轮之后，智能体会更常选择累计得分较高的动作，这套选择倾向就是“策略”。</div>
+        </div>
+      </div>
+    </SlideContent>
+  </Slide>
+);
+
+const LongTermRewardSlide = ({ isActive }) => (
+  <Slide isActive={isActive}>
+    <SlideTitle>不能只看眼前这一分</SlideTitle>
+    <SlideContent>
+      <div style={{ width: '92%', maxWidth: '1140px', display: 'grid', gridTemplateColumns: '1.12fr 0.88fr', gap: 'clamp(0.8rem, 1.7vw, 1.5rem)' }}>
+        <figure className="glass-panel" style={{ margin: 0, padding: 'clamp(0.7rem, 1.2vw, 1rem)', borderTop: '4px solid var(--accent-green)' }}>
+          <img src="/images/reward_maze.png" alt="机器人在眼前奖励与长期回报之间选择路线" className="teaching-visual" style={{ maxHeight: 'min(40vh, 300px)' }} />
+          <figcaption style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.72rem, 1.05vw, 0.9rem)', lineHeight: 1.45, marginTop: '0.55rem' }}>左边很快得到糖果，但路线通向陷阱；右边暂时绕远，却能安全到达终点。智能体要比较整条路线的累计奖励。</figcaption>
+        </figure>
+        <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: 'clamp(0.6rem, 1.2vh, 1rem)' }}>
+          <div className="glass-panel" style={{ padding: 'clamp(0.85rem, 1.5vw, 1.3rem)', borderLeft: '4px solid var(--accent-red)' }}>
+            <h3 style={{ fontSize: 'clamp(1.05rem, 1.6vw, 1.35rem)', color: 'var(--accent-red)', margin: '0 0 0.45rem' }}>🍬 眼前奖励</h3>
+            <p style={{ fontSize: 'clamp(0.8rem, 1.2vw, 1rem)', lineHeight: 1.55, color: 'var(--text-secondary)', margin: 0 }}>某一步立刻得到 +1，不代表整条路线最好。为了眼前食物钻进死角，可能马上结束游戏。</p>
+          </div>
+          <div className="glass-panel" style={{ padding: 'clamp(0.85rem, 1.5vw, 1.3rem)', borderLeft: '4px solid var(--accent-green)' }}>
+            <h3 style={{ fontSize: 'clamp(1.05rem, 1.6vw, 1.35rem)', color: 'var(--accent-green)', margin: '0 0 0.45rem' }}>🏆 长期回报</h3>
+            <p style={{ fontSize: 'clamp(0.8rem, 1.2vw, 1rem)', lineHeight: 1.55, color: 'var(--text-secondary)', margin: 0 }}>强化学习比较未来许多步奖励的总和。暂时绕远一点，如果更安全、更容易完成任务，反而更优。</p>
+          </div>
+        </div>
+      </div>
+      <div className="glass-panel" style={{ marginTop: 'clamp(0.9rem, 2vh, 1.5rem)', padding: 'clamp(0.9rem, 1.5vw, 1.3rem)', width: '90%', maxWidth: '1100px', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 'clamp(0.8rem, 1.5vw, 1.3rem)', alignItems: 'center', borderLeft: '4px solid var(--accent-purple)' }}>
+        <span style={{ fontSize: 'clamp(1.8rem, 3vw, 2.8rem)' }}>🤔</span>
+        <div>
+          <strong style={{ fontSize: 'clamp(1rem, 1.6vw, 1.25rem)', color: 'var(--accent-purple)' }}>课堂追问：如果“走一步扣 0.1 分”，智能体会不会为了少扣分而完全不动？</strong>
+          <div style={{ marginTop: 'clamp(0.3rem, 0.7vh, 0.5rem)', fontSize: 'clamp(0.8rem, 1.25vw, 1rem)', color: 'var(--text-secondary)' }}>奖励必须同时鼓励完成目标、控制成本并遵守安全边界，不能只写一个分数。</div>
+        </div>
+      </div>
+    </SlideContent>
+  </Slide>
+);
+
 const OutroSlide = ({ isActive }) => (
   <Slide isActive={isActive}>
     <SlideTitle>结业出口</SlideTitle>
@@ -489,14 +620,27 @@ export const Lesson3 = ({ onGoHome }) => {
     CoverSlide,
     LeadInSlide,
     ElementsSlide,
+    LearningLoopSlide,
     SafetyRulesSlide,
     ClassroomRLDashboard, // Round 1
+    WhyRewardWorksSlide,
     StrategySlide,
+    LongTermRewardSlide,
     ClassroomRLDashboard, // Round 2
     RewardHackerSlide,
     SummarySlide,
     OutroSlide
   ];
 
-  return <Presentation slides={slides} onGoHome={onGoHome} />;
+  const stages = [
+    { from: 0, label: '课程导入' },
+    { from: 2, label: '原理建构' },
+    { from: 4, label: '游戏准备' },
+    { from: 5, label: '课堂实验' },
+    { from: 6, label: '解释现象' },
+    { from: 10, label: '安全与迁移' },
+    { from: 11, label: '课程总结' }
+  ];
+
+  return <Presentation slides={slides} onGoHome={onGoHome} lessonLabel="第 3 课时 · 从反馈到策略" stages={stages} />;
 };
