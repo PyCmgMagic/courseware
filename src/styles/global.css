@@ -3,21 +3,22 @@
   --bg-base: #09090b;
   --bg-gradient-start: #111113;
   --bg-gradient-end: #09090b;
-  
+
   --bg-glass: rgba(20, 20, 25, 0.4);
   --bg-glass-hover: rgba(30, 30, 38, 0.6);
-  
+
   --text-primary: #f4f4f5;
   --text-secondary: #a1a1aa;
   --text-tertiary: #71717a;
-  
+
   /* Soft Pastel/Mesh Accents */
   --accent-cyan: #22d3ee;
   --accent-purple: #c084fc;
   --accent-blue: #3b82f6;
   --accent-green: #34d399;
   --accent-red: #fb7185;
-  
+  --on-accent: #09090b;
+
   --border-glass: rgba(255, 255, 255, 0.08);
   --border-glass-strong: rgba(255, 255, 255, 0.15);
 
@@ -29,39 +30,47 @@
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #e4e4e7, #a1a1aa);
   --gradient-accent: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-  
+
   /* Shadows */
   --shadow-premium: 0 10px 40px -10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
   --shadow-premium-hover: 0 20px 60px -15px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.15);
   --glow-cyan: 0 0 20px rgba(34, 211, 238, 0.15);
-  
+
   /* Typography */
   --font-primary: 'Noto Sans SC', 'Microsoft YaHei UI', sans-serif;
-  --slide-title-size: clamp(1.5rem, 3.2vw, 2.75rem);
+  --slide-title-size: clamp(1.55rem, 3.3vw, 2.85rem);
   --slide-padding: clamp(0.75rem, 2.5vw, 2rem);
   --content-gap: clamp(0.5rem, 1.5vw, 1.5rem);
   --element-gap: clamp(0.35rem, 1vh, 0.9rem);
-  
+
   /* Transitions */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 :root[data-theme='light'] {
-  /* Premium Sleek Light Theme */
-  --bg-base: #ffffff;
-  --bg-gradient-start: #fafafa;
-  --bg-gradient-end: #ffffff;
-  
-  --bg-glass: rgba(255, 255, 255, 0.7);
-  --bg-glass-hover: rgba(250, 250, 250, 0.9);
-  
-  --text-primary: #09090b;
-  --text-secondary: #52525b;
-  --text-tertiary: #a1a1aa;
-  
-  --border-glass: rgba(0, 0, 0, 0.08);
-  --border-glass-strong: rgba(0, 0, 0, 0.15);
+  /* Clean Teaching Light Theme — high contrast for classroom projection */
+  --bg-base: #f6f7f9;
+  --bg-gradient-start: #ffffff;
+  --bg-gradient-end: #f2f4f8;
+
+  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-glass-hover: rgba(255, 255, 255, 1);
+
+  --text-primary: #18181b;
+  --text-secondary: #3f3f46;
+  --text-tertiary: #6b7280;
+
+  /* Darker, projector-safe accents on white */
+  --accent-cyan: #0888a8;
+  --accent-purple: #8b3fd9;
+  --accent-blue: #2563eb;
+  --accent-green: #0a9464;
+  --accent-red: #dc2f4c;
+  --on-accent: #ffffff;
+
+  --border-glass: rgba(0, 0, 0, 0.1);
+  --border-glass-strong: rgba(0, 0, 0, 0.18);
 
   /* Overlays */
   --overlay-light: rgba(0, 0, 0, 0.04);
@@ -69,10 +78,10 @@
   --overlay-heavy: rgba(0, 0, 0, 0.15);
 
   --gradient-primary: linear-gradient(135deg, #18181b, #52525b);
-  
-  --shadow-premium: 0 10px 40px -10px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,1);
-  --shadow-premium-hover: 0 20px 60px -15px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,1);
-  --glow-cyan: 0 0 20px rgba(34, 211, 238, 0.3);
+
+  --shadow-premium: 0 8px 28px -10px rgba(15, 23, 42, 0.14), inset 0 1px 0 rgba(255,255,255,1);
+  --shadow-premium-hover: 0 16px 44px -14px rgba(15, 23, 42, 0.2), inset 0 1px 0 rgba(255,255,255,1);
+  --glow-cyan: 0 0 16px rgba(8, 136, 168, 0.18);
 }
 
 * {
@@ -85,7 +94,7 @@ html {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-size: clamp(10px, min(1vw, 1.75vh), 16px);
+  font-size: clamp(11px, min(1.02vw, 1.78vh), 16px);
   background-color: var(--bg-base);
   transition: background-color 0.5s ease;
 }
@@ -98,7 +107,7 @@ body {
   font-family: var(--font-primary);
   background-color: transparent;
   color: var(--text-primary);
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 #root {
@@ -167,26 +176,23 @@ body {
   justify-content: space-between;
   align-items: center;
   color: var(--text-tertiary);
-  font-size: clamp(0.7rem, 1vw, 0.88rem);
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
   font-weight: 750;
   letter-spacing: 0.12em;
-  margin-bottom: clamp(0.25rem, 0.7vh, 0.55rem);
+  margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
 }
 
-.slide-heading h2 {
+/* Teaching-style title: solid high-contrast text with an accent bar */
+.slide-title-text {
   font-size: var(--slide-title-size);
-  line-height: 1.12;
-  font-weight: 850;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   margin: 0;
   text-align: left;
-}
-
-.slide-heading-line {
-  width: 100%;
-  height: 1px;
-  margin-top: clamp(0.4rem, 1vh, 0.8rem);
-  background: linear-gradient(90deg, var(--accent-cyan), rgba(192, 132, 252, 0.35), transparent 72%);
+  color: var(--text-primary);
+  border-left: clamp(4px, 0.45vw, 7px) solid var(--accent-cyan);
+  padding-left: clamp(0.65rem, 1.2vw, 1.1rem);
 }
 
 img,
@@ -277,6 +283,27 @@ img,
   text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
+/* Per-slide step progress dots (next to the page indicator) */
+.step-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 2px;
+}
+
+.step-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border-glass-strong);
+  transition: all 0.25s ease;
+}
+
+.step-dot.revealed {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--glow-cyan);
+}
+
 /* Button Reset */
 button {
   font-family: var(--font-primary);
@@ -298,7 +325,7 @@ input:focus-visible,
   display: flex;
   gap: clamp(0.45rem, 1vw, 1rem);
   z-index: 50;
-  opacity: 0.3;
+  opacity: 0.45;
   transform: translateY(10px);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -323,11 +350,11 @@ input:focus-visible,
 /* Taller classroom projectors need a fuller teaching canvas. */
 @media (min-height: 780px) and (min-width: 1100px) {
   html {
-    font-size: clamp(12px, min(1.05vw, 1.92vh), 18px);
+    font-size: clamp(13px, min(1.05vw, 1.92vh), 18px);
   }
 
   :root {
-    --slide-title-size: clamp(1.7rem, 3.25vw, 2.9rem);
+    --slide-title-size: clamp(1.75rem, 3.3vw, 3rem);
     --content-gap: clamp(0.75rem, 1.7vw, 1.7rem);
     --element-gap: clamp(0.5rem, 1.2vh, 1rem);
   }
@@ -387,7 +414,7 @@ input:focus-visible,
   }
 
   .nav-controls {
-    opacity: 0.16;
+    opacity: 0.25;
   }
 }
 
@@ -420,13 +447,9 @@ input:focus-visible,
     animation-iteration-count: 1 !important;
     transition-duration: 0.2s !important;
   }
-
-  .bg-aurora .blob {
-    animation: none !important;
-  }
 }
 
-/* Premium Animated Aurora & Tech Grid Background */
+/* Quiet, static background — classroom projection friendly */
 .bg-aurora {
   position: fixed;
   inset: 0;
@@ -435,7 +458,7 @@ input:focus-visible,
   overflow: hidden;
   z-index: -2;
   pointer-events: none;
-  background: var(--bg-base);
+  background: linear-gradient(160deg, var(--bg-gradient-start), var(--bg-gradient-end));
   transition: background 0.5s ease;
 }
 
@@ -448,21 +471,25 @@ input:focus-visible,
   pointer-events: none;
   background-image: radial-gradient(var(--border-glass-strong) 1.5px, transparent 1.5px);
   background-size: 32px 32px;
-  opacity: 1;
+  opacity: 0.35;
+}
+
+[data-theme='light'] .bg-grid {
+  opacity: 0.22;
 }
 
 .bg-aurora .blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.35;
+  opacity: 0.12;
   mix-blend-mode: screen;
+  animation: none;
 }
 
+/* Light teaching theme: no floating color blobs at all */
 [data-theme='light'] .bg-aurora .blob {
-  opacity: 0.25;
-  mix-blend-mode: multiply;
-  filter: blur(110px);
+  display: none;
 }
 
 .bg-aurora .blob-1 {
@@ -471,7 +498,6 @@ input:focus-visible,
   background: radial-gradient(circle, var(--accent-cyan) 0%, rgba(34, 211, 238, 0) 70%);
   top: -150px;
   left: -150px;
-  animation: float-1 25s infinite alternate ease-in-out;
 }
 
 .bg-aurora .blob-2 {
@@ -480,7 +506,6 @@ input:focus-visible,
   background: radial-gradient(circle, var(--accent-purple) 0%, rgba(192, 132, 252, 0) 70%);
   bottom: -150px;
   right: -100px;
-  animation: float-2 20s infinite alternate ease-in-out;
 }
 
 .bg-aurora .blob-3 {
@@ -489,50 +514,6 @@ input:focus-visible,
   background: radial-gradient(circle, var(--accent-green) 0%, rgba(52, 211, 153, 0) 70%);
   top: 30%;
   left: 35%;
-  animation: float-3 28s infinite alternate ease-in-out;
-}
-
-@keyframes float-1 {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50% { transform: translate(120px, 90px) scale(1.15) rotate(180deg); }
-  100% { transform: translate(-60px, 160px) scale(0.9) rotate(360deg); }
-}
-
-@keyframes float-2 {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50% { transform: translate(-140px, -70px) scale(0.9) rotate(-180deg); }
-  100% { transform: translate(90px, -140px) scale(1.1) rotate(-360deg); }
-}
-
-@keyframes float-3 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(80px, -110px) scale(1.2); }
-  100% { transform: translate(-110px, 60px) scale(0.8); }
-}
-
-/* Decorative corner L-brackets for slides (Stage camera frame layout) */
-.slide::before,
-.slide::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
-  z-index: 10;
-  opacity: 0.38;
-  transition: all var(--transition-normal);
-}
-.slide::before {
-  top: clamp(0.75rem, 2.5vw, 2rem);
-  left: clamp(0.75rem, 2.5vw, 2rem);
-  border-top: 2px solid var(--border-glass-strong);
-  border-left: 2px solid var(--border-glass-strong);
-}
-.slide::after {
-  bottom: clamp(0.75rem, 2.5vw, 2rem);
-  right: clamp(0.75rem, 2.5vw, 2rem);
-  border-bottom: 2px solid var(--border-glass-strong);
-  border-right: 2px solid var(--border-glass-strong);
 }
 
 /* Styled Kicker Breadcrumbs and Badges */
@@ -546,7 +527,7 @@ input:focus-visible,
   align-items: center;
   padding: clamp(2px, 0.4vh, 4px) clamp(8px, 1vw, 12px);
   border-radius: 12px;
-  font-size: clamp(0.68rem, 0.85vw, 0.78rem);
+  font-size: clamp(0.7rem, 0.88vw, 0.8rem);
   font-weight: 750;
   background: var(--bg-glass);
   border: 1px solid var(--border-glass-strong);
@@ -564,19 +545,24 @@ input:focus-visible,
   border-radius: 50%;
   background: var(--accent-cyan);
   margin-right: 6px;
-  box-shadow: 0 0 8px var(--accent-cyan);
-  animation: pulse-cyan 2s infinite ease-in-out;
 }
 
-@keyframes pulse-cyan {
-  0% { transform: scale(0.9); opacity: 0.6; }
-  50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--accent-cyan); }
-  100% { transform: scale(0.9); opacity: 0.6; }
+/* Question-chain tag (Q1–Q4) tying a slide back to the lesson's driving question */
+.q-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: clamp(2px, 0.4vh, 4px) clamp(8px, 1vw, 12px);
+  border-radius: 12px;
+  font-size: clamp(0.7rem, 0.88vw, 0.8rem);
+  font-weight: 750;
+  background: rgba(139, 63, 217, 0.1);
+  border: 1px solid var(--accent-purple);
+  color: var(--accent-purple);
 }
 
 .slide-number-indicator {
   font-family: var(--font-primary);
-  font-size: clamp(0.7rem, 0.9vw, 0.82rem);
+  font-size: clamp(0.72rem, 0.9vw, 0.84rem);
   color: var(--text-tertiary);
   background: var(--bg-glass);
   padding: clamp(2px, 0.4vh, 4px) clamp(8px, 1vw, 12px);
@@ -610,7 +596,7 @@ input:focus-visible,
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: clamp(0.7rem, 0.8vw, 0.82rem);
+  font-size: clamp(0.72rem, 0.85vw, 0.84rem);
   font-weight: 700;
   color: var(--text-tertiary);
   transition: all var(--transition-normal);
@@ -625,7 +611,6 @@ input:focus-visible,
 
 .timeline-item.active {
   color: var(--accent-cyan);
-  text-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
 }
 
 .timeline-item.completed {
@@ -642,13 +627,11 @@ input:focus-visible,
 
 .timeline-item.active .timeline-dot {
   background: var(--accent-cyan);
-  box-shadow: 0 0 8px var(--accent-cyan);
   transform: scale(1.3);
 }
 
 .timeline-item.completed .timeline-dot {
   background: var(--accent-purple);
-  box-shadow: 0 0 6px var(--accent-purple);
 }
 
 .timeline-connector {
@@ -662,4 +645,3 @@ input:focus-visible,
 .timeline-item.completed + .timeline-connector {
   background: linear-gradient(90deg, var(--accent-purple), var(--border-glass-strong));
 }
-

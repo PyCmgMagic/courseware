@@ -1,8 +1,46 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PresentationMetaContext } from './PresentationMetaContext';
+import { useCurrentStep } from './useSlideSteps';
+
+/**
+ * Cumulative reveal block: hidden (space preserved) until step >= n,
+ * then fades/slides in once and stays visible — like a PowerPoint build.
+ */
+export const Step = ({ n = 1, children, className = '', style = {} }) => {
+  const step = useCurrentStep();
+  const visible = step >= n;
+
+  return (
+    <motion.div
+      initial={false}
+      animate={visible
+        ? { opacity: 1, y: 0, filter: 'blur(0px)' }
+        : { opacity: 0, y: 16, filter: 'blur(4px)' }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+      style={{
+        ...style,
+        visibility: visible ? 'visible' : 'hidden',
+        pointerEvents: visible ? 'auto' : 'none'
+      }}
+      aria-hidden={!visible}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export const Slide = ({ children, className = '', isActive = true }) => {
+  const { registerSteps } = useContext(PresentationMetaContext);
+
+  // Default: a slide has no internal steps. Page components that call
+  // useSlideSteps(n) run their effect afterwards (parent effects run after
+  // child effects) and override this registration.
+  useEffect(() => {
+    registerSteps(0);
+  }, [registerSteps]);
+
   if (!isActive) return null;
 
   return (
@@ -32,7 +70,7 @@ export const Slide = ({ children, className = '', isActive = true }) => {
   );
 };
 
-export const SlideTitle = ({ children, eyebrow }) => {
+export const SlideTitle = ({ children, eyebrow, qtag }) => {
   const meta = useContext(PresentationMetaContext);
   const stage = eyebrow || meta.sectionLabel;
 
@@ -47,11 +85,11 @@ export const SlideTitle = ({ children, eyebrow }) => {
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
         <span className="lesson-label">{meta.lessonLabel}</span>
         {stage && <span className="section-badge">{stage}</span>}
+        {qtag && <span className="q-badge">{qtag}</span>}
       </div>
       <span className="slide-number-indicator">{meta.currentSlide + 1} / {meta.totalSlides}</span>
     </div>
-    <h2 className="text-gradient">{children}</h2>
-    <div className="slide-heading-line" aria-hidden="true" />
+    <h2 className="slide-title-text">{children}</h2>
   </motion.header>
   );
 };
