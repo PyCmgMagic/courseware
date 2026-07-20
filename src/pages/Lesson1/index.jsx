@@ -525,13 +525,15 @@ const GameRulesSlide = ({ isActive }) => {
 };
 
 const InteractiveGameSlide = ({ isActive }) => {
-  const [context, setContext] = useState("有一天，一只小猫走进了");
+  const initialContext = '有一天，一只小猫走进了';
+  const [context, setContext] = useState(initialContext);
   const [candidates, setCandidates] = useState([]);
   const [newWord, setNewWord] = useState('');
   const [temperature, setTemperature] = useState('low'); // 'low' or 'high'
   const [isPicking, setIsPicking] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [justPickedWord, setJustPickedWord] = useState('');
+  const [roundCount, setRoundCount] = useState(0);
 
   const addCandidate = () => {
     if (!newWord.trim()) return;
@@ -600,6 +602,7 @@ const InteractiveGameSlide = ({ isActive }) => {
 
           setTimeout(() => {
             setContext(prev => prev + selectedWord);
+            setRoundCount(prev => prev + 1);
             setJustPickedWord('');
             setCandidates([]);
           }, 800); // Wait for flying animation
@@ -615,21 +618,58 @@ const InteractiveGameSlide = ({ isActive }) => {
         <div data-no-advance style={{ width: '90%', maxWidth: '1200px', display: 'flex', gap: '2rem', height: '100%', cursor: 'default' }}>
           {/* Left: Context and Settings */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div className="glass-panel" style={{ padding: '2rem', flex: 1, position: 'relative' }}>
-              <h3 style={{ marginTop: 0, color: 'var(--text-secondary)' }}>当前上下文 (Context)</h3>
-              <div style={{ fontSize: '2rem', lineHeight: 1.6, fontWeight: 600 }}>
-                {context}
+            <div className="glass-panel" style={{ padding: '1.5rem', flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', marginBottom: '0.9rem' }}>
+                <h3 style={{ margin: 0, color: 'var(--text-secondary)' }}>当前上下文 (Context)</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexShrink: 0 }}>
+                  <span style={{ padding: '0.4rem 0.75rem', borderRadius: '999px', background: 'rgba(8, 136, 168, 0.1)', color: 'var(--accent-cyan)', fontSize: '0.88rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
+                    已采样 {roundCount} 轮
+                  </span>
+                  <button
+                    disabled={isPicking}
+                    onClick={() => {
+                      setContext('');
+                      setRoundCount(0);
+                    }}
+                    style={{ padding: '0.4rem 0.7rem', borderRadius: '7px', border: '1px solid var(--border-glass)', background: 'var(--overlay-light)', color: 'var(--text-secondary)', cursor: isPicking ? 'not-allowed' : 'pointer', opacity: isPicking ? 0.5 : 1 }}
+                  >
+                    清空
+                  </button>
+                  <button
+                    disabled={isPicking}
+                    onClick={() => {
+                      setContext(initialContext);
+                      setRoundCount(0);
+                    }}
+                    style={{ padding: '0.4rem 0.7rem', borderRadius: '7px', border: '1px solid var(--border-glass)', background: 'var(--overlay-light)', color: 'var(--text-secondary)', cursor: isPicking ? 'not-allowed' : 'pointer', opacity: isPicking ? 0.5 : 1, whiteSpace: 'nowrap' }}
+                  >
+                    恢复开场
+                  </button>
+                </div>
+              </div>
+              <div style={{ margin: '-0.45rem 0 0.85rem', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>可直接改写故事，再继续下一轮接龙</div>
+              <div style={{ flex: 1, minHeight: 0, position: 'relative' }}>
+                <textarea
+                  aria-label="自定义当前上下文"
+                  disabled={isPicking}
+                  value={context}
+                  onChange={(e) => setContext(e.target.value)}
+                  placeholder="输入任意故事开头，例如：在未来的火星学校里……"
+                  style={{ width: '100%', height: '100%', minHeight: '170px', resize: 'none', padding: '1rem 1.1rem 2.3rem', borderRadius: '12px', border: '1px solid var(--border-glass)', background: 'var(--overlay-light)', color: 'var(--text-primary)', fontFamily: 'var(--font-primary)', fontSize: '1.7rem', lineHeight: 1.6, fontWeight: 600, caretColor: 'var(--accent-cyan)', opacity: isPicking ? 0.62 : 1, transition: 'border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease' }}
+                />
+                <span style={{ position: 'absolute', right: '0.9rem', bottom: '0.7rem', color: 'var(--text-tertiary)', fontSize: '0.82rem', pointerEvents: 'none' }}>
+                  {context.length} 字 · 可编辑
+                </span>
                 {justPickedWord && (
                   <motion.span
-                    initial={{ opacity: 0, scale: 2, y: 50, color: 'var(--accent-cyan)' }}
-                    animate={{ opacity: 1, scale: 1, y: 0, color: 'var(--text-primary)' }}
+                    initial={{ opacity: 0, scale: 1.8, y: 28 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ duration: 0.5, type: 'spring' }}
-                    style={{ display: 'inline-block' }}
+                    style={{ position: 'absolute', right: '1rem', bottom: '2.2rem', display: 'inline-block', padding: '0.45rem 0.8rem', borderRadius: '9px', background: 'var(--accent-cyan)', color: 'var(--on-accent)', fontSize: '1.25rem', fontWeight: 800, boxShadow: 'var(--glow-cyan)', pointerEvents: 'none' }}
                   >
-                    {justPickedWord}
+                    + {justPickedWord}
                   </motion.span>
                 )}
-                {!justPickedWord && <span style={{ borderRight: '4px solid var(--accent-cyan)', animation: 'blink 1s infinite' }}></span>}
               </div>
             </div>
 

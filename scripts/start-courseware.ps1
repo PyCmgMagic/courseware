@@ -30,15 +30,36 @@ Get-CimInstance Win32_Process |
 
 Start-Sleep -Milliseconds 700
 
-Write-Host '正在重新构建并启动最新版课件……' -ForegroundColor Green
-Write-Host '浏览器将固定打开 http://127.0.0.1:5173/'
+$usedPorts = [System.Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners().Port
+$port = 5173..5190 | Where-Object { $_ -notin $usedPorts } | Select-Object -First 1
+
+if (-not $port) {
+    Write-Host '启动失败：5173—5190 端口均已被占用。' -ForegroundColor Red
+    exit 1
+}
+
+$cacheBuster = Get-Date -Format 'yyyyMMddHHmmss'
+$previewPath = "/?v=$cacheBuster"
+$previewUrl = "http://127.0.0.1:$port$previewPath"
+
+Write-Host '正在重新构建最新版课件……' -ForegroundColor Green
+& npm.cmd run build
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host '课件构建失败，请查看上方错误信息。' -ForegroundColor Red
+    exit 1
+}
+
+Write-Host "最新版课件将打开：$previewUrl" -ForegroundColor Green
+if ($port -ne 5173) {
+    Write-Host "提示：5173 端口已被其他程序占用，本次已自动改用 $port。" -ForegroundColor Yellow
+}
 Write-Host '如果已有旧标签页，请以本次自动打开的新标签页为准。'
 Write-Host '授课结束后，关闭本窗口即可停止课件服务。'
 
-& npm.cmd run classroom
+& npm.cmd run preview -- --host 127.0.0.1 --port $port --strictPort --open $previewPath
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Host '启动失败：5173 端口可能被其他程序占用。' -ForegroundColor Red
-    Write-Host '请关闭占用该端口的程序后重新双击“启动课件.cmd”。' -ForegroundColor Yellow
+    Write-Host "启动失败：$port 端口可能刚刚被其他程序占用。" -ForegroundColor Red
     exit 1
 }

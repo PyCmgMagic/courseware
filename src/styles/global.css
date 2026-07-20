@@ -312,6 +312,7 @@ button {
 
 button:focus-visible,
 input:focus-visible,
+textarea:focus-visible,
 [tabindex]:focus-visible {
   outline: 3px solid var(--accent-cyan);
   outline-offset: 3px;
